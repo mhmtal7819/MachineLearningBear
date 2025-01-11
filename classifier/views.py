@@ -27,6 +27,8 @@ def classify_image(request):
         image_file = request.FILES['image']
         file_path = default_storage.save('uploaded_images/' + image_file.name, image_file)
 
+        image_url = settings.MEDIA_URL + 'uploaded_images/' + image_file.name
+
         # Görüntüyü işleyip tahmin yap
         img = cv2.imread(file_path)
         img = cv2.resize(img, (128, 128))
@@ -37,7 +39,7 @@ def classify_image(request):
         predicted_class = classes[prediction[0]]
 
         context = {
-            'image_url': default_storage.url(file_path),
+            'image_url': image_url, #default_storage.url(file_path),
             'predicted_class': predicted_class,
         }
 

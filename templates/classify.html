@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Classifier</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'classifier/styles.css' %}">
 </head>
 <body>
     <h1>Upload an Image to Classify</h1>
@@ -15,10 +17,11 @@
 
     {% if image_url %}
     <h2>Uploaded Image:</h2>
-    <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 300px;">
+    <img src="{{ image_url }}" alt="Uploaded Image">
 
-    <h2>Prediction:</h2>
-    <p>Class: {{ predicted_class }}</p>
+    <div class="prediction">
+        Predicted Class (Tahmin edilen sınıf): <span>{{ predicted_class }}</span>
+    </div>
     {% endif %}
 </body>
 </html>
